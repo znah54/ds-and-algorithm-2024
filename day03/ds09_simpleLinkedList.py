@@ -22,6 +22,20 @@ def printNodes(start) : # start부터 시작해서 끝까지 노드.data 출력
             print(curr.data, end ='->') # 연결할 노드가 있으니까 연결표기(->)를
             curr = curr.link # 자기 뒤의 데이터를 curr로 바꿔줌
 
+
+# 노드 검색 함수
+def findNode(find):
+    global head, curr
+
+    curr = head
+    if curr.data == find:
+        return curr # 현재 노드를 리턴해주고 함수 탈출
+    while curr.link != None:
+        curr = curr.link # 다음 노드로
+        if curr.data == find:
+            return curr
+    return Node() # 위에 만족못하면 빈노드 리턴 함수 탈출
+
 # 노드 삽입 함수
 def insertNode(find, data):
     global head,prev,curr # 전역변수를 insertNode()에서 사용하겠다고 선언
@@ -51,6 +65,7 @@ def insertNode(find, data):
 
 # 노드 삭제 함수
 def deleteNode(data):
+
     global head, prev, curr
 
     if head.data == data: # 첫번째 노드 삭제
@@ -69,6 +84,8 @@ def deleteNode(data):
             del(curr)
             return # 함수 탈출
 
+  
+        
 #전역변수
 head, prev, curr = None, None, None
 orginData = ['다현','정연','쯔위','사나','지효']
@@ -105,4 +122,9 @@ for data in orginData[1:]:
     deleteNode('정국')
     print('맨 앞 노드 삭제')
     printNodes(head)
+
+    # 노드검색
+    fNode = findNode('다현')
+    printNodes(head)
+    print(f'찾은 노드 : {fNode.data}')
 
