@@ -1,19 +1,14 @@
-# file : ds16.queue.py
-# desc : 큐 일반구현
+# file : ds17_circularQueue.py
+# desc : 원형큐 일반 구현
 
 # Queue 풀함수
 def isQueueFull():
     global SIZE, rear, front, rear
-    if rear == (SIZE -1): # 큐가 아직 빈상태
+    if(rear+1) % SIZE == front:
         return True
-    elif(rear == SIZE -1) and (front == 1) # 큐가 꽉찬 상태
-    else: # 큐가 앞쪽이 비어있는 상태, rear가 끝까지 간 상태
-        for i in range(front+1, SIZE):
-            queue[i-1] = queue[i]
-            queue[i] = None
-        front -= 1
-        rear -= 1
-        return False 
+    else:
+        return False
+       
     
 # Queue 엠티확인함수
 def isQueueEmpty():
@@ -30,8 +25,8 @@ def enQueue(data):
         print('큐가 꽉찼습니다')
         return # 함수탈출
     else:
-        rear += 1
-        queue[rear] = data 
+        rear = (rear+1) % SIZE # 원형큐에서 데이터 입력 공간확보
+        queue[rear] = data
 
 # Queue 데이터추출함수
 def deQueue():
@@ -40,7 +35,7 @@ def deQueue():
         print("큐가 비었습니다.")
         return None
     else:
-        front += 1
+        front = (front+1) % SIZE
         data = queue[front]
         queue[front] = None
         return data
@@ -48,10 +43,11 @@ def deQueue():
 # 추출데이터 확인 함수
 def peek():
     global SIZE, queue, front, rear
-    if(isQueueEmpty()):
+    if(isQueueEmpty()) == True:
         print("큐가 비었습니다")
         return None
-    return queue[front+1]
+    else:
+        return queue[(front+1) % SIZE]
 
 # 전역변수
 PI = 3.141592
@@ -85,3 +81,4 @@ if __name__ == '__main__': # 메인시작
         else:
             continue    
         
+        #C27H46O cholesterol
