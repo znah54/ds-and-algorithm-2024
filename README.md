@@ -53,6 +53,8 @@
         - 버블정렬 Bubble Sort - 기준값 기준으로 제일 큰값을 뒤로 보내는 정렬 0(n^2)
         - 퀵정렬   Quick Sort - 기준값 기준으로 작은값 그룹이랑 큰 값그룹 분리한뒤 다시 정렬 재귀호출  0(nlogn)
 
+        ![정렬기준](https://raw.githubusercontent.com/znah54/ds-and-algorithm-2024/main/images/sorting.jpg)
+
 ## 7일차
 - 파이썬 자료구조/알고리즘
     - 검색
