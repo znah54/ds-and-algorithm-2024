@@ -77,8 +77,32 @@ curr = root
 parent = None
 
 while True:
-    if deleteName == curr.data:
-        pass
+    if deleteName == curr.data: # 삭제할 데이터 찾았으면
+        if curr.left == None and curr.right == None: # 리프노드라 삭제 무지 쉬움
+            if parent.left == curr: # 내가 부모의 왼쪽에 붙어 있으면
+                parent.left = None
+            else:
+                parent.right = None
+            
+            del(curr) # 연결이 끊어진 노드를 완전 삭제
+        elif curr.left != None and curr.right == None: #내노드 왼쪽에 자식노드가 있으면
+            if parent.left == curr:
+                parent.left = curr.left
+            else:  # 부모노드의 오른쪽에 내가 ㅇㅆ으면
+                parent.right = curr.right
+            
+            del(curr)
+        elif curr.left == None and curr.right != None: # 내노드 오른쪽에 자식노드가 있으면
+            if parent.left == curr:
+                parent.left = curr.right
+            else:
+                parent.right = curr.right
+
+            del(curr)
+        
+        print(f'{deleteName} 이 삭제됨')
+        break
+
     elif deleteName < curr.data: # 왼쪽으로
         if curr.left == None:
             print(f'{deleteName} 이 트리에 없음')
@@ -94,4 +118,7 @@ while True:
             parent = curr
             curr = curr.right
 
-
+curr = root
+print('중위 순회 : ', end = '')
+inorder()
+print('끝')
