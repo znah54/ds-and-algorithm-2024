@@ -11,3 +11,7 @@ for dirName, subDirList, fnames in os.walk(folderName):
         fnameAry.append(fname)
 
 print(len(fnameAry))
+print(len(fnameAry))
+
+fnameAry.sort(reverse=True)
+print(fnameAry)
